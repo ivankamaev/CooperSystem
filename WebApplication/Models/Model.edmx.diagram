@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e7e0e293d5a74caaaf40a0249d14cd75" Name="Diagram1">
+        <EntityTypeShape EntityType="u0416457_systemModel.contact" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="u0416457_systemModel.equipment" Width="1.5" PointX="7.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="u0416457_systemModel.organization" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="u0416457_systemModel.place" Width="1.5" PointX="5.25" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="u0416457_systemModel.project_equipment" Width="1.5" PointX="9.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="u0416457_systemModel.project" Width="1.5" PointX="7.5" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="u0416457_systemModel.tech_brands" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="u0416457_systemModel.tech_models" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="u0416457_systemModel.user" Width="1.5" PointX="5.25" PointY="13.375" IsExpanded="true" />
+        <AssociationConnector Association="u0416457_systemModel.FK_Contacts_Organizations" ManuallyRouted="false" />
+        <AssociationConnector Association="u0416457_systemModel.FK_Project_Client" ManuallyRouted="false" />
+        <AssociationConnector Association="u0416457_systemModel.FK_Project_Executor" ManuallyRouted="false" />
+        <AssociationConnector Association="u0416457_systemModel.FK_Project_Manager" ManuallyRouted="false" />
+        <AssociationConnector Association="u0416457_systemModel.FK_Project_Showman" ManuallyRouted="false" />
+        <AssociationConnector Association="u0416457_systemModel.FK_Users_Contacts" ManuallyRouted="false" />
+        <AssociationConnector Association="u0416457_systemModel.FK_Equipment_TechModels" ManuallyRouted="false" />
+        <AssociationConnector Association="u0416457_systemModel.FK_ProjectEquipment_Equipment" ManuallyRouted="false" />
+        <AssociationConnector Association="u0416457_systemModel.FK_Project_Places" ManuallyRouted="false" />
+        <AssociationConnector Association="u0416457_systemModel.FK_ProjectEquipment_Projects" ManuallyRouted="false" />
+        <AssociationConnector Association="u0416457_systemModel.FK_Project_Creater" ManuallyRouted="true" >
+          <ConnectorPoint PointX="6.75" PointY="14.610007010416666" />
+          <ConnectorPoint PointX="8.25" PointY="14.610007010416666" />
+          <ConnectorPoint PointX="8.25" PointY="13.672425130208332" />
+        </AssociationConnector>
+        <AssociationConnector Association="u0416457_systemModel.FK_TechModels_TechBrands" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
