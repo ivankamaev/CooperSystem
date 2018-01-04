@@ -15,8 +15,12 @@ namespace WebApplication.Controllers
         private u0416457_systemEntities db = new u0416457_systemEntities();
 
         // GET: login
-        public ActionResult Index()
+        public ActionResult Index(string logout)
         {
+            if (logout != null)
+            {
+                FormsAuthentication.SignOut();
+            }
             return View();
         }
 
@@ -42,7 +46,7 @@ namespace WebApplication.Controllers
                     var authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
                     authCookie.Expires = DateTime.Now.AddMinutes(3);
                     Response.Cookies.Add(authCookie);
-                    return RedirectToAction("Index", "projects");
+                    return RedirectToAction("../"+ FormsAuthentication.GetRedirectUrl(email,false));
                 }
                 else
                 {

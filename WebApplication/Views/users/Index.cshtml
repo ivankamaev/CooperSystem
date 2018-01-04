@@ -35,7 +35,24 @@
                 @Html.DisplayFor(modelItem => item.contact.phone)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.status)
+                @{
+                    if (item.status == "admin")
+                    {
+                        @:Администратор
+                    } 
+                    else
+                    {
+                        if (item.status == "user")
+                        {
+                            @:Пользователь
+                        }
+                        else
+                        {
+                            @Html.DisplayFor(modelItem => item.status)
+                        }
+                    }
+
+                }
             </td>
             <td>
                 @Html.ActionLink("Изменить", "Edit", new { id = item.userID }) |

@@ -18,21 +18,20 @@
                 @{
                     if (User.Identity.IsAuthenticated)
                     {
-                        if (((FormsIdentity)User.Identity).Ticket.UserData == "Администратор")
+                        if (((FormsIdentity)User.Identity).Ticket.UserData == "admin")
                         {
                             @Html.ActionLink("Пользователи", "Index", "users", new { area = "" }, new { @class = "navbar-brand" })
                         }
                     }
                 }
             </div>
-            <font color="white">
-                @{
-                    if (User.Identity.IsAuthenticated)
-                    {
-                        @:Привет, @User.Identity.Name
-                    }
+            @{
+                if (User.Identity.IsAuthenticated)
+                {
+                    @Html.ActionLink("Выход", "Index", "login", new { logout = "yes" }, new { @class = "navbar-right navbar-brand" })
+                    @:<p class="navbar-right navbar-brand">Привет, @User.Identity.Name</p>
                 }
-            </font>
+            }
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                 </ul>

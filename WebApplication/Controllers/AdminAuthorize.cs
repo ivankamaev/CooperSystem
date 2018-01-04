@@ -13,7 +13,7 @@ namespace WebApplication.Controllers
         {
             if (httpContext.User.Identity.IsAuthenticated)
             {
-                if (((FormsIdentity)httpContext.User.Identity).Ticket.UserData == "Администратор")
+                if (((FormsIdentity)httpContext.User.Identity).Ticket.UserData == "admin")
                 {
                     return true;
                 }

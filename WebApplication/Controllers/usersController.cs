@@ -57,6 +57,17 @@ namespace WebApplication.Controllers
                                                      };
             ViewBag.contactID = new SelectList(selectList, "Value", "Text");
 
+            SelectListItem st1 = new SelectListItem();
+            st1.Value = "admin";
+            st1.Text = "Администратор";
+            SelectListItem st2 = new SelectListItem();
+            st2.Value = "user";
+            st2.Text = "Пользователь";
+            List<SelectListItem> stlist = new List<SelectListItem>();
+            stlist.Add(st1);
+            stlist.Add(st2);
+            ViewBag.status = new SelectList(stlist, "Value", "Text");
+
             var users = db.users.OrderBy(u => u.userID);
             int i = 1;
             foreach (user u in users)
@@ -124,7 +135,19 @@ namespace WebApplication.Controllers
                                                          Value = c.contactID.ToString(),
                                                          Text = c.lastname + " " + c.name
                                                      };
-            ViewBag.contactID = new SelectList(selectList, "Value", "Text",user.contactID);
+            ViewBag.contactID = new SelectList(selectList, "Value", "Text", user.contactID);
+
+            SelectListItem st1 = new SelectListItem();
+            st1.Value = "admin";
+            st1.Text = "Администратор";
+            SelectListItem st2 = new SelectListItem();
+            st2.Value = "user";
+            st2.Text = "Пользователь";
+            List<SelectListItem> stlist = new List<SelectListItem>();
+            stlist.Add(st1);
+            stlist.Add(st2);
+            ViewBag.status = new SelectList(stlist, "Value", "Text", user.status);
+
             return View(user);
         }
 
