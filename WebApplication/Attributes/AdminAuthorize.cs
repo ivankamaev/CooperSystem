@@ -5,7 +5,7 @@ using System.Text;
 using System.Web.Mvc;
 using System.Web.Security;
 
-namespace WebApplication.Controllers
+namespace WebApplication.Attributes
 {
     public class AdminAuthorizeAttribute : AuthorizeAttribute
     {

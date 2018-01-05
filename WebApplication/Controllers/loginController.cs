@@ -20,6 +20,11 @@ namespace WebApplication.Controllers
             if (logout != null)
             {
                 FormsAuthentication.SignOut();
+                Response.Cookies.Add(new HttpCookie("id") 
+                { 
+                    Expires = DateTime.Now.AddMinutes(-1) 
+                });
+                return RedirectToAction("Index");
             }
             return View();
         }
@@ -30,6 +35,7 @@ namespace WebApplication.Controllers
             var users = db.users.Where(u => u.contact.email == email);
             if (users.Count() == 1)
             {
+                int time = 3;
                 string hash = users.First().passwordhash;
                 if (VerifyHashedPassword(hash, password))
                 {
@@ -37,15 +43,18 @@ namespace WebApplication.Controllers
                         1,
                         email,
                         DateTime.Now,
-                        DateTime.Now.AddMinutes(3),
+                        DateTime.Now.AddMinutes(time),
                         false,
                         users.First().status,
                         FormsAuthentication.FormsCookiePath
                     );
                     string encryptedTicket = FormsAuthentication.Encrypt(ticket);
                     var authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
-                    authCookie.Expires = DateTime.Now.AddMinutes(3);
+                    authCookie.Expires = DateTime.Now.AddMinutes(time);
+                    var idCookie = new HttpCookie("id", users.First().userID.ToString());
+                    idCookie.Expires = DateTime.Now.AddMinutes(time);
                     Response.Cookies.Add(authCookie);
+                    Response.Cookies.Add(idCookie);
                     return RedirectToAction("../"+ FormsAuthentication.GetRedirectUrl(email,false));
                 }
                 else

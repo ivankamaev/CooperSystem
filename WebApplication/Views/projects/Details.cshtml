@@ -132,7 +132,10 @@
     </div>
             @if (ViewBag.model.Count == 0)
             {
-                <p>@Html.ActionLink("Добавить оборудование", "Index", "project_equipment", new { id = Model.projectID }, null)</p>
+                if (Model.createrID.ToString() == ViewBag.UID || Model.createrID == null || ViewBag.status == "admin")
+                {
+                    <p>@Html.ActionLink("Добавить оборудование", "Index", "project_equipment", new { id = Model.projectID }, null)</p>
+                }
             }
             else
             {
@@ -160,7 +163,17 @@
             }
 
 <br />
-<p>
-    @Html.ActionLink("Изменить", "Edit", new { id = Model.projectID }) |
-    @Html.ActionLink("Назад к списку проектов", "Index")
-</p>
+    @if (Model.createrID.ToString() == ViewBag.UID || Model.createrID == null || ViewBag.status == "admin")
+    {
+        <p>
+            @Html.ActionLink("Изменить", "Edit", new { id = Model.projectID }) |
+            @Html.ActionLink("Удалить", "Delete", new { id = Model.projectID }) |
+            @Html.ActionLink("Назад к списку проектов", "Index")
+        </p>
+    }
+    else
+    {
+        <p>
+            @Html.ActionLink("Назад к списку проектов", "Index")
+        </p>
+    }

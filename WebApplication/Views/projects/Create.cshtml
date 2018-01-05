@@ -10,7 +10,6 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    <input id="UID" name="userID" type="hidden" value="@ViewBag.UID" />
     <div class="form-horizontal">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using WebApplication.Models;
 
 namespace WebApplication1.Controllers
@@ -37,11 +38,46 @@ namespace WebApplication1.Controllers
             {
                 ViewBag.Place = pr.place.name;
             }
+            if (pr.start != null)
+            {
+                ViewBag.Start = @Convert.ToDateTime(pr.start).ToString("dd.MM.yyyy hh:mm");
+            }
+            if (Request.Cookies.Get("id") != null)
+            {
+                if (((FormsIdentity)User.Identity).Ticket.UserData == "admin" || pr.createrID == null || pr.createrID.ToString() == Request.Cookies.Get("id").Value)
+                {
+                    ViewBag.Hide = "no";
+                }
+                else
+                {
+                    ViewBag.Hide = "yes";
+                }
+            }
+            else
+            {
+                ViewBag.Hide = "yes";
+            }
+
             return View(project_equipment);
         }
 
         public ActionResult Create(int? id)
         {
+            if (Request.Cookies.Get("id") != null)
+            {
+                if (db.projects.Find(id).createrID != null)
+                {
+                    if (db.projects.Find(id).createrID.ToString() != Request.Cookies.Get("id").Value && ((FormsIdentity)User.Identity).Ticket.UserData != "admin")
+                    {
+                        return RedirectToAction("Index", "login");
+                    }
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "login");
+            }
+
             var project_equipment = db.project_equipment.OrderBy(pe => pe.project_equipmentID);
             int i = 1;
             foreach (project_equipment pe in project_equipment)
@@ -71,7 +107,7 @@ namespace WebApplication1.Controllers
             var equipment = db.equipments.Where(e => e.equipmentID != null).ToList();
             IEnumerable<SelectListItem> selectList1 = from e in equipment
                                                      where e.tech_models.tech_brands != null && e.tech_models != null
-                                                      orderby e.tech_models.tech_brands.name, e.tech_models.name 
+                                                     orderby e.tech_models.tech_brands.name, e.tech_models.name 
                                                      select new SelectListItem
                                                      {
                                                          Value = e.equipmentID.ToString(),
@@ -127,6 +163,20 @@ namespace WebApplication1.Controllers
             }
             project pr = db.projects.Find(project_equipment.projectID);
             ViewBag.ID = pr.projectID;
+            if (Request.Cookies.Get("id") != null)
+            {
+                if (pr.createrID != null)
+                {
+                    if (pr.createrID.ToString() != Request.Cookies.Get("id").Value && ((FormsIdentity)User.Identity).Ticket.UserData != "admin")
+                    {
+                        return RedirectToAction("Index", "login");
+                    }
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "login");
+            }
             if (pr.executorID != null)
             {
                 ViewBag.ExecutorName = pr.contact.name;
@@ -166,6 +216,20 @@ namespace WebApplication1.Controllers
             }
             project pr = db.projects.Find(project_equipment.projectID);
             ViewBag.ID = pr.projectID;
+            if (Request.Cookies.Get("id") != null)
+            {
+                if (pr.createrID != null)
+                {
+                    if (pr.createrID.ToString() != Request.Cookies.Get("id").Value && ((FormsIdentity)User.Identity).Ticket.UserData != "admin")
+                    {
+                        return RedirectToAction("Index", "login");
+                    }
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "login");
+            }
             if (pr.executorID != null)
             {
                 ViewBag.ExecutorName = pr.contact.name;

@@ -7,7 +7,10 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication.Models;
+using WebApplication.Attributes;
 using WebApplication.Controllers;
+using System.Web.Security;
+
 
 namespace WebApplication1.Controllers
 {
@@ -35,6 +38,18 @@ namespace WebApplication1.Controllers
                 default:
                     projects = projects.OrderBy(p => p.start);
                     break;
+            }
+            if (Request.Cookies.Get("id") != null)
+            {
+                ViewBag.UID = Request.Cookies.Get("id").Value;
+            }
+            else
+            {
+                ViewBag.UID = null;
+            }
+            if (((FormsIdentity)User.Identity).Ticket.UserData == "admin")
+            {
+                ViewBag.status = "admin";
             }
             return View(projects.ToList());
         }
@@ -90,6 +105,18 @@ namespace WebApplication1.Controllers
             ViewBag.brand = brand;
             ViewBag.model = model;
             ViewBag.count = count;
+            if (Request.Cookies.Get("id") != null)
+            {
+                ViewBag.UID = Request.Cookies.Get("id").Value;
+            }
+            else
+            {
+                ViewBag.UID = null;
+            }
+            if (((FormsIdentity)User.Identity).Ticket.UserData == "admin")
+            {
+                ViewBag.status = "admin";
+            }
             return View(project);
         }
 
@@ -123,8 +150,15 @@ namespace WebApplication1.Controllers
                 }
             }
             ViewBag.ID = i;
-            ViewBag.createrID = 1;
-
+            if (Request.Cookies.Get("id") != null)
+            {
+                ViewBag.createrID = Request.Cookies.Get("id").Value;
+            }
+            else
+            {
+                ViewBag.createrID = null;
+            }
+            
             return View();
         }
 
@@ -157,6 +191,20 @@ namespace WebApplication1.Controllers
             if (project == null)
             {
                 return HttpNotFound();
+            }
+            if (Request.Cookies.Get("id") != null)
+            {
+                if (project.createrID != null)
+                {
+                    if (project.createrID.ToString() != Request.Cookies.Get("id").Value && ((FormsIdentity)User.Identity).Ticket.UserData != "admin")
+                    {
+                        return RedirectToAction("Index", "login");
+                    }
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "login");
             }
 
             var contactls = db.contacts.Where(c => c.contactID != null).ToList();
@@ -231,6 +279,21 @@ namespace WebApplication1.Controllers
             {
                 return HttpNotFound();
             }
+            if (Request.Cookies.Get("id") != null)
+            {
+                if (project.createrID != null)
+                {
+                    if (project.createrID.ToString() != Request.Cookies.Get("id").Value && ((FormsIdentity)User.Identity).Ticket.UserData != "admin")
+                    {
+                        return RedirectToAction("Index", "login");
+                    }
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "login");
+            }
+
             return View(project);
         }
 

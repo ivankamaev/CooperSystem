@@ -62,9 +62,16 @@
                 @Html.DisplayFor(modelItem => item.profit_total)
             </td>
             <td>
-                @Html.ActionLink("Изменить", "Edit", new { id = item.projectID }) |
-                @Html.ActionLink("Подробно", "Details", new { id = item.projectID }) |
-                @Html.ActionLink("Удалить", "Delete", new { id = item.projectID })
+                @if (item.createrID.ToString() == ViewBag.UID || item.createrID == null || ViewBag.status == "admin")
+                {
+                    @Html.ActionLink("Изменить", "Edit", new { id = item.projectID })@: |
+                    @Html.ActionLink("Подробно", "Details", new { id = item.projectID })@: |
+                    @Html.ActionLink("Удалить", "Delete", new { id = item.projectID })
+                }
+                else
+                {
+                    @Html.ActionLink("Подробно", "Details", new { id = item.projectID })
+                }
             </td>
         </tr>
     }

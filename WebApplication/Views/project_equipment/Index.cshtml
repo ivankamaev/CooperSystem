@@ -18,6 +18,11 @@
         <dd>
             @ViewBag.Place
         </dd>
+
+        <dt>Дата проекта</dt>
+        <dd>
+            @ViewBag.Start
+        </dd>
     </dl>
 </div>
 
@@ -54,15 +59,21 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.note)
                 </td>
-                <td>
-                    @Html.ActionLink("Изменить", "Edit", new { id = item.project_equipmentID }) |
-                    @Html.ActionLink("Удалить", "Delete", new { id = item.project_equipmentID })
-                </td>
+                @if (ViewBag.Hide == "no")
+                {
+                    <td>
+                        @Html.ActionLink("Изменить", "Edit", new { id = item.project_equipmentID }) |
+                        @Html.ActionLink("Удалить", "Delete", new { id = item.project_equipmentID })
+                    </td>
+                }
             </tr>
         }
         <tr>
             <td colspan="5">@Html.ActionLink("Назад к информации о проекте", "Details", "projects", new { id = ViewBag.ID }, null)</td>
-            <td>@Html.ActionLink("Добавить", "Create", new { id = ViewBag.ID })</td>
+            @if (ViewBag.Hide == "no")
+            {
+                <td>@Html.ActionLink("Добавить", "Create", new { id = ViewBag.ID })</td>
+            }
         </tr>
     </table>
 }

@@ -162,7 +162,7 @@
     <Compile Include="Controllers\contactsController.cs" />
     <Compile Include="Controllers\equipmentController.cs" />
     <Compile Include="Controllers\loginController.cs" />
-    <Compile Include="Controllers\AdminAuthorize.cs" />
+    <Compile Include="Attributes\AdminAuthorize.cs" />
     <Compile Include="Controllers\organizationsController.cs" />
     <Compile Include="Controllers\placesController.cs" />
     <Compile Include="Controllers\projectsController.cs" />
