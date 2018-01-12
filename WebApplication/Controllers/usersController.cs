@@ -212,6 +212,7 @@ namespace WebApplication.Controllers
             Buffer.BlockCopy(buffer2, 0, dst, 0x11, 0x20);
             return Convert.ToBase64String(dst);
         }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

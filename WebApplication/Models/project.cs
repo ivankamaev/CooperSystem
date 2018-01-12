@@ -46,10 +46,10 @@ namespace WebApplication.Models
         public Nullable<double> profit_noncash { get; set; }
         public Nullable<double> profit_total { get; set; }
     
-        public virtual contact contact { get; set; }
-        public virtual contact contact1 { get; set; }
-        public virtual contact contact2 { get; set; }
-        public virtual contact contact3 { get; set; }
+        public virtual contact contact { get; set; } //client
+        public virtual contact contact1 { get; set; } //executor
+        public virtual contact contact2 { get; set; } //manager
+        public virtual contact contact3 { get; set; } //showman
         public virtual place place { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<project_equipment> project_equipment { get; set; }

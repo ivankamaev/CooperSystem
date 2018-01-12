@@ -11,10 +11,8 @@ namespace WebApplication.Controllers
 {
     public class loginController : Controller
     {
-
         private u0416457_systemEntities db = new u0416457_systemEntities();
 
-        // GET: login
         public ActionResult Index(string logout)
         {
             if (logout != null)
@@ -35,7 +33,7 @@ namespace WebApplication.Controllers
             var users = db.users.Where(u => u.contact.email == email);
             if (users.Count() == 1)
             {
-                int time = 3;
+                int time = 30;
                 string hash = users.First().passwordhash;
                 if (VerifyHashedPassword(hash, password))
                 {

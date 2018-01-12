@@ -16,37 +16,58 @@
 
                 <dt>Заезд</dt>
                 <dd>
-                    @Html.DisplayFor(model => model.arrival)
+                    @if (Model.arrival != null)
+                    {
+                        @Convert.ToDateTime(Model.arrival).ToString("dd.MM.yyyy hh:mm")
+                    }
                 </dd>
 
                 <dt>Монтаж</dt>
                 <dd>
-                    @Html.DisplayFor(model => model.installation)
+                    @if (Model.installation != null)
+                    {
+                        @Convert.ToDateTime(Model.installation).ToString("dd.MM.yyyy hh:mm")
+                    }
                 </dd>
 
                 <dt>Репетиции</dt>
                 <dd>
-                    @Html.DisplayFor(model => model.rehearsal)
+                    @if (Model.rehearsal != null)
+                    {
+                        @Convert.ToDateTime(Model.rehearsal).ToString("dd.MM.yyyy hh:mm")
+                    }
                 </dd>
 
                 <dt>Начало</dt>
                 <dd>
-                    @Html.DisplayFor(model => model.start)
+                    @if (Model.start != null)
+                    {
+                        @Convert.ToDateTime(Model.start).ToString("dd.MM.yyyy hh:mm")
+                    }
                 </dd>
 
                 <dt>Конец</dt>
                 <dd>
-                    @Html.DisplayFor(model => model.finish)
+                    @if (Model.finish != null)
+                    {
+                        @Convert.ToDateTime(Model.finish).ToString("dd.MM.yyyy hh:mm")
+                    }
                 </dd>
 
                 <dt>Демонтаж</dt>
                 <dd>
-                    @Html.DisplayFor(model => model.deinstallation)
+                    @if (Model.deinstallation != null)
+                    {
+                        @Convert.ToDateTime(Model.deinstallation).ToString("dd.MM.yyyy hh:mm")
+                    }
                 </dd>
 
                 <dt>Отъезд</dt>
                 <dd>
-                    @Html.DisplayFor(model => model.departure)
+                    @if (Model.departure != null)
+                    {
+                        @Convert.ToDateTime(Model.departure).ToString("dd.MM.yyyy hh:mm")
+                    }
                 </dd>
 
                 <dt>Место</dt>

@@ -130,6 +130,14 @@ namespace WebApplication1.Controllers
                                                          Value = c.contactID.ToString(),
                                                          Text = c.lastname + " " + c.name
                                                      };
+
+            List<SelectListItem> stlist = new List<SelectListItem>();
+            stlist.Add(new SelectListItem() { Value = "KM", Text = "Купер Может" });
+            stlist.Add(new SelectListItem() { Value = "BD", Text = "BackgroundDJ" });
+            stlist.Add(new SelectListItem() { Value = "KM/BD", Text = "Купер Может / BackgroundDJ" });
+            ViewBag.worktype = new SelectList(stlist, "Value", "Text");
+
+            ViewBag.status = new SelectList(stlist, "Value", "Text");
             ViewBag.executorID = new SelectList(selectList, "Value", "Text");
             ViewBag.clientID = new SelectList(selectList, "Value", "Text");
             ViewBag.managerID = new SelectList(selectList, "Value", "Text");
@@ -214,6 +222,13 @@ namespace WebApplication1.Controllers
                                                          Value = c.contactID.ToString(),
                                                          Text = c.lastname + " " + c.name
                                                      };
+
+            List<SelectListItem> stlist = new List<SelectListItem>();
+            stlist.Add(new SelectListItem() { Value = "KM", Text = "Купер Может" });
+            stlist.Add(new SelectListItem() { Value = "BD", Text = "BackgroundDJ" });
+            stlist.Add(new SelectListItem() { Value = "KM/BD", Text = "Купер Может / BackgroundDJ" });
+            ViewBag.worktype = new SelectList(stlist, "Value", "Text", project.worktype);
+
             ViewBag.executorID = new SelectList(selectList, "Value", "Text", project.executorID);
             ViewBag.clientID = new SelectList(selectList, "Value", "Text", project.clientID);
             ViewBag.managerID = new SelectList(selectList, "Value", "Text", project.managerID);

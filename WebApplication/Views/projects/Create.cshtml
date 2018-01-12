@@ -91,7 +91,7 @@
         <div class="form-group">
             @Html.Label("Функция на проекте", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.worktype, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownList("worktype", null, "", htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.worktype, "", new { @class = "text-danger" })
             </div>
         </div>

@@ -13,7 +13,6 @@ namespace WebApplication.Controllers
     [Authorize]
     public class tech_brandsController : Controller
     {
-
         private u0416457_systemEntities db = new u0416457_systemEntities();
 
         public ActionResult Index(string sortOrder)
@@ -143,9 +142,5 @@ namespace WebApplication.Controllers
             }
             base.Dispose(disposing);
         }
-
-
-
-
     }
 }
