@@ -1,14 +1,11 @@
 ﻿@model DotNet.Highcharts.Highcharts
 
 @{
-    ViewBag.Title = "Отчет";
+    ViewBag.Title = "Отчет по проектам";
 }
 
-<h2>Отчет</h2>
-
-
-<h3>Круговая диаграмма</h3>
 <hr />
+
 <dl class="dl-horizontal">
     <dt>Период</dt>
     <dd>
@@ -20,6 +17,7 @@
         @ViewBag.Category
     </dd>
 </dl>
+
 <div>
     @(Model)
 </div>

@@ -217,6 +217,7 @@ namespace WebApplication1.Controllers
 
             var contactls = db.contacts.Where(c => c.contactID != null).ToList();
             IEnumerable<SelectListItem> selectList = from c in contactls
+                                                     orderby c.lastname
                                                      select new SelectListItem
                                                      {
                                                          Value = c.contactID.ToString(),

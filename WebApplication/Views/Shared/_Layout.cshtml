@@ -15,17 +15,21 @@
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                @Html.ActionLink("Проекты", "Index", "projects", new { area = "" }, new { @class = "navbar-brand" })
-                @Html.ActionLink("Контакты", "Index", "contacts", new { area = "" }, new { @class = "navbar-brand" })
-                @Html.ActionLink("Оборудование", "Index", "equipment", new { area = "" }, new { @class = "navbar-brand" })
-                @Html.ActionLink("Отчеты", "Index", "reports", new { area = "" }, new { @class = "navbar-brand" })
                 @{
                     if (User.Identity.IsAuthenticated)
                     {
+                        @Html.ActionLink("Проекты", "Index", "projects", new { area = "" }, new { @class = "navbar-brand" })
+                        @Html.ActionLink("Контакты", "Index", "contacts", new { area = "" }, new { @class = "navbar-brand" })
+                        @Html.ActionLink("Оборудование", "Index", "equipment", new { area = "" }, new { @class = "navbar-brand" })
+                        @Html.ActionLink("Отчеты", "Index", "reports", new { area = "" }, new { @class = "navbar-brand" })
                         if (((FormsIdentity)User.Identity).Ticket.UserData == "admin")
                         {
                             @Html.ActionLink("Пользователи", "Index", "users", new { area = "" }, new { @class = "navbar-brand" })
                         }
+                    }
+                    else
+                    {
+                        @:<p class="navbar-right navbar-brand">Купер Может / BackgroundDJ</p>
                     }
                 }
             </div>
@@ -47,7 +51,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - CooperCan/BackgroundDJ</p>
+            <p>&copy; @DateTime.Now.Year - Купер Может / BackgroundDJ</p>
         </footer>
     </div>
 </body>
