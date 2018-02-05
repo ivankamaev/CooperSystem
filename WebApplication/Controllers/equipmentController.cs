@@ -6,11 +6,12 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using WebApplication.Attributes;
 using WebApplication.Models;
 
 namespace WebApplication1.Controllers
 {
-    [Authorize]
+    [UserAuthorize]
     public class equipmentController : Controller
     {
         private u0416457_systemEntities db = new u0416457_systemEntities();
@@ -21,6 +22,7 @@ namespace WebApplication1.Controllers
             ViewBag.NameSort = String.IsNullOrEmpty(sortOrder) ? "Name desc" : "";
             ViewBag.BrandSort = sortOrder == "Brand" ? "Brand desc" : "Brand";
             ViewBag.ModelSort = sortOrder == "Model" ? "Model desc" : "Model";
+            ViewBag.TypeSort = sortOrder == "Type" ? "Type desc" : "Type";
             switch (sortOrder)
             {
                 case "Name desc":
@@ -37,6 +39,12 @@ namespace WebApplication1.Controllers
                     break;
                 case "Model desc":
                     equipments = equipments.OrderByDescending(e => e.tech_models.name);
+                    break;
+                case "Type":
+                    equipments = equipments.OrderBy(e => e.tech_models.type);
+                    break;
+                case "Type desc":
+                    equipments = equipments.OrderByDescending(e => e.tech_models.type);
                     break;
                 default:
                     equipments = equipments.OrderBy(e => e.name);

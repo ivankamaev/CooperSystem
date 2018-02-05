@@ -16,13 +16,13 @@
         <div class="container">
             <div class="navbar-header">
                 @{
-                    if (User.Identity.IsAuthenticated)
+                    if (Request.Cookies.Get("email") != null && Request.Cookies.Get("status") != null && Request.Cookies.Get("id") != null)
                     {
                         @Html.ActionLink("Проекты", "Index", "projects", new { area = "" }, new { @class = "navbar-brand" })
                         @Html.ActionLink("Контакты", "Index", "contacts", new { area = "" }, new { @class = "navbar-brand" })
                         @Html.ActionLink("Оборудование", "Index", "equipment", new { area = "" }, new { @class = "navbar-brand" })
                         @Html.ActionLink("Отчеты", "Index", "reports", new { area = "" }, new { @class = "navbar-brand" })
-                        if (((FormsIdentity)User.Identity).Ticket.UserData == "admin")
+                        if (Request.Cookies.Get("status").Value == "admin")
                         {
                             @Html.ActionLink("Пользователи", "Index", "users", new { area = "" }, new { @class = "navbar-brand" })
                         }
@@ -34,10 +34,10 @@
                 }
             </div>
             @{
-                if (User.Identity.IsAuthenticated)
+                if (Request.Cookies.Get("email") != null && Request.Cookies.Get("status") != null && Request.Cookies.Get("id") != null)
                 {
                     @Html.ActionLink("Выход", "Index", "login", new { logout = "yes" }, new { @class = "navbar-right navbar-brand" })
-                    @:<p class="navbar-right navbar-brand">Привет, @User.Identity.Name</p>
+                    @:<p class="navbar-right navbar-brand">Привет, @Request.Cookies.Get("email").Value</p>
                 }
             }
             <div class="navbar-collapse collapse">

@@ -7,11 +7,12 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using WebApplication.Attributes;
 using WebApplication.Models;
 
 namespace WebApplication1.Controllers
 {
-    [Authorize]
+    [UserAuthorize]
     public class project_equipmentController : Controller
     {
         private u0416457_systemEntities db = new u0416457_systemEntities();

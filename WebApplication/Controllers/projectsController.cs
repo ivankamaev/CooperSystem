@@ -14,7 +14,7 @@ using System.Web.Security;
 
 namespace WebApplication1.Controllers
 {
-    [Authorize]
+    [UserAuthorize]
     public class projectsController : Controller
     {
         private u0416457_systemEntities db = new u0416457_systemEntities();
@@ -47,7 +47,7 @@ namespace WebApplication1.Controllers
             {
                 ViewBag.UID = null;
             }
-            if (((FormsIdentity)User.Identity).Ticket.UserData == "admin")
+            if (Request.Cookies.Get("status").Value == "admin")
             {
                 ViewBag.status = "admin";
             }
@@ -113,7 +113,7 @@ namespace WebApplication1.Controllers
             {
                 ViewBag.UID = null;
             }
-            if (((FormsIdentity)User.Identity).Ticket.UserData == "admin")
+            if (Request.Cookies.Get("status").Value == "admin")
             {
                 ViewBag.status = "admin";
             }

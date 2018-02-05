@@ -6,11 +6,12 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using WebApplication.Attributes;
 using WebApplication.Models;
 
 namespace WebApplication.Controllers
 {
-    [Authorize]
+    [UserAuthorize]
     public class tech_brandsController : Controller
     {
         private u0416457_systemEntities db = new u0416457_systemEntities();

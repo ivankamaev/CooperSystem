@@ -15,9 +15,17 @@ namespace WebApplication.Controllers
 
         public ActionResult Index(string logout)
         {
-            if (logout != null)
+            if (logout == "yes")
             {
                 FormsAuthentication.SignOut();
+                Response.Cookies.Add(new HttpCookie("email")
+                {
+                    Expires = DateTime.Now.AddMinutes(-1)
+                });
+                Response.Cookies.Add(new HttpCookie("status")
+                {
+                    Expires = DateTime.Now.AddMinutes(-1)
+                });
                 Response.Cookies.Add(new HttpCookie("id") 
                 { 
                     Expires = DateTime.Now.AddMinutes(-1) 
@@ -38,20 +46,26 @@ namespace WebApplication.Controllers
                 if (VerifyHashedPassword(hash, password))
                 {
                     var ticket = new FormsAuthenticationTicket(
-                        1,
+                        2,
                         email,
                         DateTime.Now,
                         DateTime.Now.AddMinutes(time),
-                        false,
+                        true,
                         users.First().status,
                         FormsAuthentication.FormsCookiePath
                     );
                     string encryptedTicket = FormsAuthentication.Encrypt(ticket);
                     var authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
                     authCookie.Expires = DateTime.Now.AddMinutes(time);
+                    var emailCookie = new HttpCookie("email", email);
+                    emailCookie.Expires = DateTime.Now.AddMinutes(time);
+                    var statusCookie = new HttpCookie("status", users.First().status);
+                    statusCookie.Expires = DateTime.Now.AddMinutes(time);
                     var idCookie = new HttpCookie("id", users.First().userID.ToString());
                     idCookie.Expires = DateTime.Now.AddMinutes(time);
                     Response.Cookies.Add(authCookie);
+                    Response.Cookies.Add(emailCookie);
+                    Response.Cookies.Add(statusCookie);
                     Response.Cookies.Add(idCookie);
                     return RedirectToAction("../"+ FormsAuthentication.GetRedirectUrl(email,false));
                 }

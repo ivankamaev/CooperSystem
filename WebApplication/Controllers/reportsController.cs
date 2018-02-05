@@ -12,11 +12,12 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication.Models;
+using WebApplication.Attributes;
 
 
 namespace WebApplication.Controllers
 {
-    [Authorize]
+    [UserAuthorize]
     public class reportsController : Controller
     {
         private u0416457_systemEntities db = new u0416457_systemEntities();
